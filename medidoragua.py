@@ -17,20 +17,19 @@ class MedidorAgua():
         self.data_collected = []
 
     # Open HeadLess chromedriver
-    def start_driver(self):
-        print("... starting driver ...")
+    def start_display(self):
+        print("... starting display ...")
         self.display = Display(visible=0, size=(800, 600))
         self.display.start()
-        self.driver = webdriver.Chrome()
-
-    def close_driver(self):
-        print(' closing driver ...')
+        
+    def close_display(self):
+        print(' closing display ...')
         self.display.stop()
-        self.driver.quit()
         print('closed!...')
 
-    def get_page(self, url):
+    def get_page(self):
         print('getting page...')
+        self.driver = webdriver.Chrome()
         self.driver.get(self.url)
         try:
             element = WebDriverWait(self.driver, 30).until(
@@ -46,6 +45,7 @@ class MedidorAgua():
             print(error)
 
         finally:
+            self.driver.quit()
             print("printing data...", self.data_collected)
 
 
@@ -78,10 +78,14 @@ class MedidorAgua():
 
 
     def parse(self):
-        self.start_driver()
         self.get_page()
-        self.close_driver()
         self.save_data_csv(self.data_collected)
+
+    # use with server headless
+    def parse_headless(self):
+        self.start_display()
+        self.parse()
+        self.close_display()
 
 # run selenium
 
