@@ -1,7 +1,7 @@
 import pandas as pd
 
 csv = pd.read_csv('data.csv', index_col= False , parse_dates = ["data"])
-csv['medicao'] = pd.to_numeric(csv['medicao'].str.split(",").str.get(0))
+csv['medicao'] = pd.to_numeric(csv['medicao'].str.split(".").str.get(0))
 print(csv.dtypes)
 
 
