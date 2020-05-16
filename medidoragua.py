@@ -90,4 +90,4 @@ class MedidorAgua():
 # run selenium
 
 Leitor = MedidorAgua()
-medidas = Leitor.parse()
+medidas = Leitor.parse_headless()

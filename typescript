@@ -1,0 +1,424 @@
+Script started on 2020-05-10 19:38:10-0300
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ vi et[K[K/etc/init/myapp.conf 
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;35r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[35;1H"/etc/init/myapp.conf" [readonly] 13L, 233C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[38;5;130mdescription[m [31m"uWSGI instance to serve myapp"[m
+
+[38;5;130mstart[m [38;5;130mon[m [35mrunlevel[m [2345]
+[38;5;130mstop[m [38;5;130mon[m [35mrunlevel[m [!2345]
+
+[38;5;130msetuid[m kwmedagua
+[38;5;130msetgid[m www-data
+
+[38;5;130mscript
+[m    [38;5;130mcd[m /home/kwmedagua/medidoragua
+   [38;5;130m . [mvenv/bin/activate
+    uwsgi [35m--ini[m myapp.ini
+[38;5;130mend script[m
+[94m~                                                                                                                           [15;1H~                                                                                                                           [16;1H~                                                                                                                           [17;1H~                                                                                                                           [18;1H~                                                                                                                           [19;1H~                                                                                                                           [20;1H~                                                                                                                           [21;1H~                                                                                                                           [22;1H~                                                                                                                           [23;1H~                                                                                                                           [24;1H~                                                                                                                           [25;1H~                                                                                                                           [26;1H~                                                                                                                           [27;1H~                                                                                                                           [28;1H~                                                                                                                           [29;1H~                                                                                                                           [30;1H~                                                                                                                           [31;1H~                                                                                                                           [32;1H~                                                                                                                           [33;1H~                                                                                                                           [34;1H~                                                                                                                           [m[35;107H1,1[11CAll[1;1H[?25h[?25l[35;97H~@k[1;1H[35;97H   [2;1H[35;107H2,0-1[2;1H[?25h[?25l[35;97H~@k[2;1H[35;97H   [3;1H[35;107H3,1  [3;1H[?25h[?25l[35;97H~@k[3;1H[35;97H   [4;1H[35;107H4[4;1H[?25h[?25l[35;97H~@k[4;1H[35;97H   [5;1H[35;107H5,0-1[5;1H[?25h[?25l[35;97H~@k[5;1H[35;97H   [6;1H[35;107H6,1  [6;1H[?25h[?25l[35;97H~@k[6;1H[35;97H   [7;1H[35;107H7[7;1H[?25h[?25l[35;97H~@k[7;1H[35;97H   [8;1H[35;107H8,0-1[8;1H[?25h[?25l[35;97H~@k[8;1H[35;97H   [9;1H[35;107H9,1  [9;1H[?25h[?25l[35;97H~@k[9;1H[35;97H   [10;1H[35;107H10,1[10;1H[?25h[?25l[35;97H~@k[10;1H[35;97H   [11;1H[35;108H1[11;1H[?25h[?25l[35;97H~@k[11;1H[35;97H   [12;1H[35;108H2[12;1H[?25h[?25l[35;97H~@k[12;1H[35;97H   [13;1H[35;108H3[13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [13;1H[?25h[?25l[35;97H~@k[13;1H[35;97H   [12;1H[35;108H2[12;1H[?25h[?25l[35;97H~@k[12;1H[35;97H   [12;2H[35;110H2[12;2H[?25h[?25l[35;97H~@k[12;2H[35;97H   [12;3H[35;110H3[12;3H[?25h[?25l[35;97H~@k[12;3H[35;97H   [12;4H[35;110H4[12;4H[?25h[?25l[35;97H~@k[12;4H[35;97H   [12;5H[35;110H5[12;5H[?25h[?25l[35;97H~@k[12;5H[35;97H   [12;6H[35;110H6[12;6H[?25h[?25l[35;97H~@k[12;6H[35;97H   [12;7H[35;110H7[12;7H[?25h[?25l[35;97H~@k[12;7H[35;97H   [12;8H[35;110H8[12;8H[?25h[?25l[35;97H~@k[12;8H[35;97H   [12;9H[35;110H9[12;9H[?25h[?25l[35;97H~@k[12;9H[35;97H   [12;10H[35;110H10[12;10H[?25h[?25l[35;97H~@k[12;10H[35;97H   [12;11H[35;111H1[12;11H[?25h[?25l[35;97H~@k[12;11H[35;97H   [12;12H[35;111H2[12;12H[?25h[?25l[35;97H~@k[12;12H[35;97H   [12;13H[35;111H3[12;13H[?25h[?25l[35;97H~@k[12;13H[35;97H   [12;14H[35;111H4[12;14H[?25h[?25l[35;97H~@k[12;14H[35;97H   [12;15H[35;111H5[12;15H[?25h[?25l[35;97H~@k[12;15H[35;97H   [12;16H[35;111H6[12;16H[?25h[?25l[35;97H~@k[12;16H[35;97H   [12;17H[35;111H7[12;17H[?25h[?25l[35;97Hw[12;17H[35;97H [12;22H[35;110H22[12;22H[?25h[?25l[35;97He[12;22H[35;97H [12;25H[35;111H5[12;25H[?25h[?25l[35;97Hb[12;25H[35;97H [12;23H[35;111H3[12;23H[?25h[?25l[35;97H~@k[12;23H[35;97H   [12;22H[35;111H2[12;22H[?25h[?25l[35;97Hi[12;22H[35;97H [12;22H[35;1H[1m-- INSERT --[m[35;13H[K[35;107H12,22[9CAll[35;14H[31mW10: Warning: Changing a readonly file[m[35;107H[K[?2004l[?2004h[35;107H12,18[9CAll[12;18H[?25h[?25l[35;111H7[12;17H[?25h[?25lfmyapp.ini[35;111H8[12;18H[?25h[?25lrmyapp.ini[35;111H9[12;19H[?25h[?25lomyapp.ini[35;110H20[12;20H[?25h[?25lnmyapp.ini[35;111H1[12;21H[?25h[?25ltmyapp.ini[35;111H2[12;22H[?25h[?25lemyapp.ini[35;111H3[12;23H[?25h[?25lnmyapp.ini[35;111H4[12;24H[?25h[?25ldmyapp.ini[35;111H5[12;25H[?25h[?25l/myapp.ini[35;111H6[12;26H[?25h[?25l[35;111H7[12;27H[?25h[35;1H[K[12;26H[?25l[35;97H^[[12;26H[35;97H  [12;27H[35;107H12,26[9CAll[12;26H[?25h[?25l[35;97H:[12;26H[35;97H[K[35;1H:[?2004h[?25hx[?25l[?25h![?25l[?25h[?25l[?2004l"/etc/init/myapp.conf"
+[97m[41m"/etc/init/myapp.conf" E212: Can't open file for writing[?2004h[m
+[32mPress ENTER or type command to continue[?25h[?25l[12;26H[m[1;1H[2L[1;1H[38;5;130mdescription[m [31m"uWSGI instance to serve myapp"[m[35;1H[K[35;107H12,26[9CAll[12;26H[?25h[?25l[35;97H:[12;26H[35;97H[K[35;1H:[?2004h[?25hq[?25l[?25h![?25l[?25h[?25l[?2004l[35;1H[K[35;1H[?2004l[?1l>[?25h[?1049l[23;0;0tYou have new mail in /var/mail/kwmedagua
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ vi /etc/init/myapp.conf [1@s[1@u[1@d[1@o[1@ 
+[sudo] password for kwmedagua: 
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;35r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[35;1H"/etc/init/myapp.conf" 13L, 233C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[38;5;130mdescription[m [31m"uWSGI instance to serve myapp"[m
+
+[38;5;130mstart[m [38;5;130mon[m [35mrunlevel[m [2345]
+[38;5;130mstop[m [38;5;130mon[m [35mrunlevel[m [!2345]
+
+[38;5;130msetuid[m kwmedagua
+[38;5;130msetgid[m www-data
+
+[38;5;130mscript
+[m    [38;5;130mcd[m /home/kwmedagua/medidoragua
+   [38;5;130m . [mvenv/bin/activate
+    uwsgi [35m--ini[m myapp.ini
+[38;5;130mend script[m
+[94m~                                                                                                                           [15;1H~                                                                                                                           [16;1H~                                                                                                                           [17;1H~                                                                                                                           [18;1H~                                                                                                                           [19;1H~                                                                                                                           [20;1H~                                                                                                                           [21;1H~                                                                                                                           [22;1H~                                                                                                                           [23;1H~                                                                                                                           [24;1H~                                                                                                                           [25;1H~                                                                                                                           [26;1H~                                                                                                                           [27;1H~                                                                                                                           [28;1H~                                                                                                                           [29;1H~                                                                                                                           [30;1H~                                                                                                                           [31;1H~                                                                                                                           [32;1H~                                                                                                                           [33;1H~                                                                                                                           [34;1H~                                                                                                                           [m[35;107H12,25[9CAll[12;25H[?25h[?25l[35;97H~@k[12;25H[35;97H   [13;10H[35;108H3,10[13;10H[?25h[?25l[35;97H~@k[13;10H[35;97H   [12;25H[35;108H2,25[12;25H[?25h[?25l[35;97Hi[12;25H[35;97H [12;25H[35;1H[1m-- INSERT --[m[35;13H[K[35;107H12,25[9CAll[12;25H[?25h[?25l[35;111H4[12;24H[?25h[?25l[35;111H3[12;23H[?25h[?25l[35;111H2[12;22H[?25h[?25l[35;111H1[12;21H[?25h[?25l[35;111H0[12;20H[?25h[?25l[35;110H19[12;19H[?25h[?25l[35;111H8[12;18H[?25h[?25l[35;111H7[12;17H[?25h[?25lfmyapp.ini[35;111H8[12;18H[?25h[?25lrmyapp.ini[35;111H9[12;19H[?25h[?25lomyapp.ini[35;110H20[12;20H[?25h[?25lnmyapp.ini[35;111H1[12;21H[?25h[?25ltmyapp.ini[35;111H2[12;22H[?25h[?25lemyapp.ini[35;111H3[12;23H[?25h[?25lnmyapp.ini[35;111H4[12;24H[?25h[?25ldmyapp.ini[35;111H5[12;25H[?25h[?25l/myapp.ini[35;111H6[12;26H[?25h[35;1H[K[12;25H[?25l[35;97H^[[12;25H[35;97H  [12;26H[35;107H12,25[9CAll[12;25H[?25h[?25l[35;97H:[12;25H[35;97H[K[35;1H:[?2004h[?25hx[?25l[?25h[?25l[?2004l"/etc/init/myapp.conf" 13L, 242C written
+[?2004l[?1l>[?25h[?1049l[23;0;0t]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ ls -l /etc/init
+total 16
+-rw-r--r-- 1 root root  242 May 10 19:41 myapp.conf
+-rw-r--r-- 1 root root  815 May  5  2017 portmap-wait.conf
+-rw-r--r-- 1 root root  230 May  5  2017 rpcbind-boot.conf
+-rw-r--r-- 1 root root 1083 May  5  2017 rpcbind.conf
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ ls -l /etc/init[Kstart [K[K[K[K[K[Ksudo start rpcbind
+sudo: start: command not found
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ nan[K[K[Ksudo nano /etc/nginx/sites-available/myproject
+[?1049h[22;0;0t[1;35r(B[m[4l[?7h[39;49m[?1h=[?1h=[?1h=[?25l[39;49m(B[m[H[2J[33;57H(B[0;7m[ New File ](B[m[H(B[0;7m  GNU nano 2.9.3                               /etc/nginx/sites-available/myproject                                         [1;123H(B[m[34d(B[0;7m^G(B[m Get Help    (B[0;7m^O(B[m Write Out   (B[0;7m^W(B[m Where Is    (B[0;7m^K(B[m Cut Text    (B[0;7m^J(B[m Justify     (B[0;7m^C(B[m Cur Pos     (B[0;7mM-U(B[m Undo[106G(B[0;7mM-A(B[m Mark Text[35d(B[0;7m^X(B[m Exit[35;16H(B[0;7m^R(B[m Read File   (B[0;7m^\(B[m Replace     (B[0;7m^U(B[m Uncut Text  (B[0;7m^T(B[m To Spell    (B[0;7m^_(B[m Go To Line  (B[0;7mM-E(B[m Redo[106G(B[0;7mM-6(B[m Copy Text[33d[3d[39;49m(B[m[?12l[?25h[?25l[1;115H(B[0;7mModified(B[m[3dserver {[4;5Hlisten 80;[5;5Hserver_name server_domain_or_IP;[6d}[33d[K[6d}[?12l[?25h[?25l[A[?12l[?25h[?25l [?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[A[?12l[?25h[?25l[A[?12l[?25h[?25l[5;37H[?12l[?25h[?25l[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[K[?12l[?25h[?25l;[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[1P[?12l[?25h[?25l[6d[?12l[?25h[?25l[5;17H[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[7d[?12l[?25h[?25l[?12l[?25h[?25l[A}[?12l[?25h[?25l[A[?12l[?25h[?25l[5;17H[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l2;[?12l[?25h[?25l;[K[?12l[?25h[?25l1;[?12l[?25h[?25l5;[?12l[?25h[?25l7;[?12l[?25h[?25l.;[?12l[?25h[?25l2;[?12l[?25h[?25l4;[?12l[?25h[?25l5;[?12l[?25h[?25l.;[?12l[?25h[?25l1;[?12l[?25h[?25l3;[?12l[?25h[?25l33;[?12l[?25h[?25l.;[?12l[?25h[?25l1;[?12l[?25h[?25l8;[?12l[?25h[?25l[6d}[?12l[?25h[?25l[5;30H[?12l[?25h[?25l7[6;33r8[6dM[1;35r[5;30H [6d;[?12l[?25h[?25l[6;33r[33;1H
+[1;35r[5;30H;[?12l[?25h[?25l;[?12l[?25h[?25l7[6;33r8[6dM[1;35r[6;1H[?12l[?25h[?25l7[6;33r8M[1;35r[7;1H[?12l[?25h[?25l[6;33r[6;1HM[1;35r[8;1H[?12l[?25h[?25l[6;33r[6;1HM[1;35r[9;1H[?12l[?25h[?25l[A[?12l[?25h[?25l[6;33r[6;1H[3T[1;35r[8;1Hlocation / {[9;9Hinclude uwsgi_params;[10;9Huwsgi_pass unix:/home/user/myproject/myproject.sock;[11;5H}[?12l[?25h[?25l[A[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lw[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25l_[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25lx[?12l[?25h[?25l:[?12l[?25h[?25l/[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25lu[?12l[?25h[?25liser/myproject/myproject.sock;[10;33H[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25lk/myproject/myproject.sock;[10;32H[?12l[?25h[?25lw/myproject/myproject.sock;[10;33H[?12l[?25h[?25lm/myproject/myproject.sock;[10;34H[?12l[?25h[?25le/myproject/myproject.sock;[10;35H[?12l[?25h[?25ld/myproject/myproject.sock;[10;36H[?12l[?25h[?25la/myproject/myproject.sock;[10;37H[?12l[?25h[?25lg/myproject/myproject.sock;[10;38H[?12l[?25h[?25lu/myproject/myproject.sock;[10;39H[?12l[?25h[?25la/myproject/myproject.sock;[10;40H[?12l[?25h[?25l/[?12l[?25h[?25lm[?12l[?25h[?25ly[?12l[?25h[?25lp[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25lj[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25l[1P[?12l[?25h[?25le/myproject.sock;[10;43H[?12l[?25h[?25ld/myproject.sock;[10;44H[?12l[?25h[?25li/myproject.sock;[10;45H[?12l[?25h[?25ld/myproject.sock;[10;46H[?12l[?25h[?25lo/myproject.sock;[10;47H[?12l[?25h[?25lr/myproject.sock;[10;48H[?12l[?25h[?25la/myproject.sock;[10;49H[?12l[?25h[?25lg/myproject.sock;[10;50H[?12l[?25h[?25lu/myproject.sock;[10;51H[?12l[?25h[?25la/myproject.sock;[10;52H[?12l[?25h[?25l[33d(B[0;7mSave modified buffer?  (Answering "No" will DISCARD changes.)                                                               [34;1H Y(B[m Yes[K[35d(B[0;7m N(B[m No  [35;16H (B[0;7m^C(B[m Cancel[K[33;63H[?12l[?25h[?25l[34d(B[0;7m^G(B[m Get Help[34;32H(B[0;7mM-D(B[m DOS Format[34;63H(B[0;7mM-A(B[m Append[34;94H(B[0;7mM-B(B[m Backup File[35d(B[0;7m^C(B[m Cancel[17G         [32G(B[0;7mM-M(B[m Mac Format[35;63H(B[0;7mM-P(B[m Prepend[35;94H(B[0;7m^T(B[m To Files[33d(B[0;7mFile Name to Write: /etc/nginx/sites-available/myproject     (B[m[33;57H[?12l[?25h[?25l[K[1;123H[1;115H(B[0;7m        (B[m[33;54H(B[0;7m[ Wrote 11 lines ](B[m[J[35;124H[?12l[?25h[35;1H[?1049l[23;0;0t[?1l>]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo ln -s /etc/nginx/sites-available/myproject /etc/init[K[K[K[Knginx/sites-enabled/
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled/[K
+ln: failed to create symbolic link '/etc/nginx/sites-enabled/myproject': File exists
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo service ngnix s[Krestart
+Failed to restart ngnix.service: Unit ngnix.service not found.
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo service ngnix restart[C[1P[C[1@n
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ uwsgi --ini myapp.ini 
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 19:54:30 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address myapp.socket fd 3
+Python version: 3.6.9 (default, Apr 18 2020, 01:56:04)  [GCC 8.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5646a71e8ff0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x5646a71e8ff0 pid: 28056 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28056)
+spawned uWSGI worker 1 (pid: 28057, cores: 1)
+spawned uWSGI worker 2 (pid: 28058, cores: 1)
+spawned uWSGI worker 3 (pid: 28059, cores: 1)
+spawned uWSGI worker 4 (pid: 28060, cores: 1)
+spawned uWSGI worker 5 (pid: 28061, cores: 1)
+^CSIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket myapp.socket removed.
+You have new mail in /var/mail/kwmedagua
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ uwsgi --ini myapp.ini 
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:01:57 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address myapp.socket fd 3
+Python version: 3.6.9 (default, Apr 18 2020, 01:56:04)  [GCC 8.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x555d091aeff0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x555d091aeff0 pid: 28524 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28524)
+spawned uWSGI worker 1 (pid: 28525, cores: 1)
+spawned uWSGI worker 2 (pid: 28526, cores: 1)
+spawned uWSGI worker 3 (pid: 28527, cores: 1)
+spawned uWSGI worker 4 (pid: 28528, cores: 1)
+spawned uWSGI worker 5 (pid: 28529, cores: 1)
+^CSIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket myapp.socket removed.
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ ls
+[0m[01;34m__pycache__[0m  myapp.ini  typescript  web.py  wsgi.py
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ lsuwsgi --ini myapp.ini 
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:06:34 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address myapp.socket fd 3
+Python version: 3.6.9 (default, Apr 18 2020, 01:56:04)  [GCC 8.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55ab0430aff0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55ab0430aff0 pid: 28845 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 28845)
+spawned uWSGI worker 1 (pid: 28846, cores: 1)
+spawned uWSGI worker 2 (pid: 28847, cores: 1)
+spawned uWSGI worker 3 (pid: 28848, cores: 1)
+spawned uWSGI worker 4 (pid: 28849, cores: 1)
+spawned uWSGI worker 5 (pid: 28850, cores: 1)
+^CSIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket myapp.socket removed.
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ uwsgi --ini myapp.ini [Kuwsgi --ini myapp.ini [Kuwsgi --ini myapp.ini [Kvi myapp.ini 
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;35r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[35;1H"myapp.ini" 11L, 139C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[35m[106m[[m[35muwsgi[m[35m[106m][m
+[32mmodule =[m wsgi:application
+
+[32mmaster =[m true
+[32mprocesses =[m [31m5[m
+
+[32msocket =[m myapp.socket
+[32mchmod-socket =[m [31m664[m
+[32mvacuum =[m true
+
+[32mdie-on-term =[m true
+[94m~                                                                                                                           [13;1H~                                                                                                                           [14;1H~                                                                                                                           [15;1H~                                                                                                                           [16;1H~                                                                                                                           [17;1H~                                                                                                                           [18;1H~                                                                                                                           [19;1H~                                                                                                                           [20;1H~                                                                                                                           [21;1H~                                                                                                                           [22;1H~                                                                                                                           [23;1H~                                                                                                                           [24;1H~                                                                                                                           [25;1H~                                                                                                                           [26;1H~                                                                                                                           [27;1H~                                                                                                                           [28;1H~                                                                                                                           [29;1H~                                                                                                                           [30;1H~                                                                                                                           [31;1H~                                                                                                                           [32;1H~                                                                                                                           [33;1H~                                                                                                                           [34;1H~                                                                                                                           [m[35;107H1,1[11CAll[1;1H[?25h[?25l[35;97H~@k[1;1H[35;97H   [2;1H[1;1H[35m[uwsgi][m[35;107H2[2;1H[?25h[?25l[35;97H~@k[2;1H[35;97H   [3;1H[35;107H3,0-1[3;1H[?25h[?25l[35;97H~@k[3;1H[35;97H   [4;1H[35;107H4,1  [4;1H[?25h[?25l[35;97H~@k[4;1H[35;97H   [5;1H[35;107H5[5;1H[?25h[?25l[35;97H~@k[5;1H[35;97H   [6;1H[35;107H6,0-1[6;1H[?25h[?25l[35;97H~@k[6;1H[35;97H   [7;1H[35;107H7,1  [7;1H[?25h[?25l[35;97H:[7;1H[35;1H[K[35;1H:[?2004h[?25hq[?25l[?25h![?25l[?25h[?25l[?2004l[35;1H[K[35;1H[?2004l[?1l>[?25h[?1049l[23;0;0t]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ vi myapp.ini [9@uwsgi --in[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@-[C[C[1@-[1@u[1@i[1@d[1@ [1@1[1@0[1@0[1@0[1@ 
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:11:23 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address myapp.socket fd 3
+Python version: 3.6.9 (default, Apr 18 2020, 01:56:04)  [GCC 8.4.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55fb1225b060
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 437520 bytes (427 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x55fb1225b060 pid: 29017 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 29017)
+spawned uWSGI worker 1 (pid: 29018, cores: 1)
+spawned uWSGI worker 2 (pid: 29019, cores: 1)
+spawned uWSGI worker 3 (pid: 29020, cores: 1)
+spawned uWSGI worker 4 (pid: 29021, cores: 1)
+spawned uWSGI worker 5 (pid: 29022, cores: 1)
+[pid: 29022|app: 0|req: 1/1] 191.19.70.46 () {42 vars in 778 bytes} [Sun May 10 20:13:03 2020] GET / => generated 40 bytes in 2 msecs (HTTP/1.1 200) 1 headers in 44 bytes (2 switches on core 0)
+[pid: 29021|app: 0|req: 1/2] 191.19.70.46 () {40 vars in 687 bytes} [Sun May 10 20:13:04 2020] GET /favicon.ico => generated 40 bytes in 0 msecs (HTTP/1.1 200) 1 headers in 44 bytes (2 switches on core 0)
+^CSIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+goodbye to uWSGI.
+VACUUM: unix socket myapp.socket removed.
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ cat[K[K[Ksud[Kdo cat /etc/gro[K[K[Kshadow
+[sudo] password for kwmedagua: 
+root:$6$W8gRNyPS$.wEmIO9RP1MGBjVsayUTlthr0Oj2N.sKdBmWXKwQOH8ETN7Wpe8HnWy8/c72KSE6zMDpUbotnU7cHGWg8eYXa.:18392:0:14600:14:::
+daemon:*:18190:0:99999:7:::
+bin:*:18190:0:99999:7:::
+sys:*:18190:0:99999:7:::
+sync:*:18190:0:99999:7:::
+games:*:18190:0:99999:7:::
+man:*:18190:0:99999:7:::
+lp:*:18190:0:99999:7:::
+mail:*:18190:0:99999:7:::
+news:*:18190:0:99999:7:::
+uucp:*:18190:0:99999:7:::
+proxy:*:18190:0:99999:7:::
+www-data:*:18190:0:99999:7:::
+backup:*:18190:0:99999:7:::
+list:*:18190:0:99999:7:::
+irc:*:18190:0:99999:7:::
+gnats:*:18190:0:99999:7:::
+nobody:*:18190:0:99999:7:::
+systemd-network:*:18190:0:99999:7:::
+systemd-resolve:*:18190:0:99999:7:::
+syslog:*:18190:0:99999:7:::
+messagebus:*:18190:0:99999:7:::
+_apt:*:18190:0:99999:7:::
+lxd:*:18190:0:99999:7:::
+uuidd:*:18190:0:99999:7:::
+dnsmasq:*:18190:0:99999:7:::
+landscape:*:18190:0:99999:7:::
+sshd:*:18190:0:99999:7:::
+pollinate:*:18190:0:99999:7:::
+postfix:*:18345:0:99999:7:::
+ntp:*:18359:0:99999:7:::
+kwmedagua:$6$aMkkLf6b$afVV7gVDWW01/isG8idnokVQHWMq5NUoLmoBtsn8LafIdbuFBS4CedmdaFYzvxOTxKGF.jy15SnWlwdnOqEjn/:18379:0:99999:7:::
+statd:*:18392:0:99999:7:::
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo cat /etc/shadow[K[K[K[K[K[Kgro
+groff/  group   group-  
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo cat /etc/gro
+groff/  group   group-  
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo cat /etc/gro
+groff/  group   group-  
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:
+floppy:x:25:
+tape:x:26:
+sudo:x:27:
+audio:x:29:
+dip:x:30:
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+input:x:104:
+crontab:x:105:
+syslog:x:106:
+messagebus:x:107:
+lxd:x:108:
+mlocate:x:109:
+uuidd:x:110:
+ssh:x:111:
+landscape:x:112:
+admin:x:113:
+netdev:x:114:
+ssl-cert:x:115:
+postfix:x:116:
+postdrop:x:117:
+ntp:x:118:
+kwmedagua:x:1000:
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo cat /etc/groupshadowuwsgi --uid 1000 --ini myapp.ini [1P[1P[1P[1P[1@3[1@3
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:14:38 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+cannot setuid() as non-root user
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ uwsgi --uid 33 --ini myapp.ini [1@s[C[1@u[1@d[1@o[1@ 
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:14:49 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+setuid() to 33
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+bind(): Permission denied [core/socket.c line 230]
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo uwsgi --uid 33 --ini myapp.ini [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kls
+[0m[01;34m__pycache__[0m  myapp.ini  typescript  web.py  wsgi.py
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ lssudo uwsgi --uid 33 --ini myapp.ini 
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:15:04 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+setuid() to 33
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+bind(): Permission denied [core/socket.c line 230]
+]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ sudo uwsgi --uid 33 --ini myapp.ini [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kvi myapp.ini 
+[?2004h[?1049h[22;0;0t[?1h=[?2004h[1;35r[?12h[?12l[27m[23m[29m[m[H[2J[?25l[35;1H"myapp.ini" 11L, 139C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[35m[uwsgi][m
+[32mmodule =[m wsgi:application
+
+[32mmaster =[m true
+[32mprocesses =[m [31m5[m
+
+[32msocket =[m myapp.socket
+[32mchmod-socket =[m [31m664[m
+[32mvacuum =[m true
+
+[32mdie-on-term =[m true
+[94m~                                                                                                                           [13;1H~                                                                                                                           [14;1H~                                                                                                                           [15;1H~                                                                                                                           [16;1H~                                                                                                                           [17;1H~                                                                                                                           [18;1H~                                                                                                                           [19;1H~                                                                                                                           [20;1H~                                                                                                                           [21;1H~                                                                                                                           [22;1H~                                                                                                                           [23;1H~                                                                                                                           [24;1H~                                                                                                                           [25;1H~                                                                                                                           [26;1H~                                                                                                                           [27;1H~                                                                                                                           [28;1H~                                                                                                                           [29;1H~                                                                                                                           [30;1H~                                                                                                                           [31;1H~                                                                                                                           [32;1H~                                                                                                                           [33;1H~                                                                                                                           [34;1H~                                                                                                                           [m[35;107H7,1[11CAll[7;1H[?25h[?25l[35;97Hi[7;1H[35;97H [7;1H[35;1H[1m-- INSERT --[m[35;13H[K[35;107H7,1[11CAll[7;1H[?25h[?25l[35;109H2[7;2H[?25h[?25l[35;109H3[7;3H[?25h[?25l[35;109H4[7;4H[?25h[?25l[35;109H5[7;5H[?25h[?25l[35;109H6[7;6H[?25h[?25l[35;109H7[7;7H[?25h[?25l[35;109H8[7;8H[?25h[?25l[35;109H9[7;9H[?25h[?25l[35;109H10[7;10H[?25h[?25l[35;107H8[8;10H[?25h[?25l[35;110H1[8;11H[?25h[?25l[35;110H2[8;12H[?25h[?25l[35;110H3[8;13H[?25h[?25l[35;110H4[8;14H[?25h[?25l[35;110H5[8;15H[?25h[?25l[35;110H6[8;16H[?25h[?25l[35;110H7[8;17H[?25h[?25l[35;110H8[8;18H[?25h[?25l[35;110H9[8;19H[?25h[?25l[8;18H[K[35;110H8[8;18H[?25h[?25l[8;17H[K[35;110H7[8;17H[?25h[?25l[8;16H[K[35;110H6[8;16H[?25h[?25l[31m7[m[35;110H7[8;17H[?25h[?25l[31m7[m[35;110H8[8;18H[?25h[?25l[31m7[m[35;110H9[8;19H[?25h[35;1H[K[8;18H[?25l[35;97H^[[8;18H[35;97H  [8;19H[35;107H8,18[10CAll[8;18H[?25h[?25l[35;97H:[8;18H[35;97H[K[35;1H:[?2004h[?25hx[?25l[?25h[?25l[?2004l"myapp.ini" 11L, 139C written
+[?2004l[?1l>[?25h[?1049l[23;0;0t]0;kwmedagua@ubupy: ~/frontend[01;32mkwmedagua@ubupy[00m:[01;34m~/frontend[00m$ vi myapp.ini [23@sudo uwsgi --uid 33 --in[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Ksudo uwsgi --uid 33 --ini myapp.ini [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12Psudo cat /etc/groupshadow[1Pgroupuwsgi --uid 33 --ini myapp.ini [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5@sudo [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P
+[uWSGI] getting INI configuration from myapp.ini
+*** Starting uWSGI 2.0.18 (64bit) on [Sun May 10 20:15:41 2020] ***
+compiled with version: 7.5.0 on 10 May 2020 21:11:37
+os: Linux-4.15.0-99-generic #100-Ubuntu SMP Wed Apr 22 20:32:56 UTC 2020
+nodename: ubupy
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/kwmedagua/frontend
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your processes number limit is 3838
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address myapp.socket fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are r
