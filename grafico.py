@@ -19,10 +19,10 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
+    html.H1(children='Caixa 119'),
 
     html.Div(children='''
-        Dash: A web application framework for Python.
+        Medidor de Agua: Leitor da Caixa de Água .
     '''),
 
     dcc.Graph(
@@ -33,7 +33,7 @@ app.layout = html.Div(children=[
                 
             ],
             'layout': {
-                'title': 'Dash Data Visualization'
+                'title': 'Mediçao Caixa de Agua'
             }
         }
     )
