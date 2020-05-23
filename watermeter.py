@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import os, csv
+from datetime import datetime
+
 
 
 class Watermeter:
@@ -61,7 +63,7 @@ class Watermeter:
         dirpath = os.path.abspath(os.path.dirname(__file__))
         filepath = os.path.join(dirpath, namefilecsv)
 
-        print('... converting dict to csv %s...' %namefilecsv)
+        print('... converting dict to %s...' %namefilecsv)
         fieldnames =[   
                 'data',
                 'dia',
@@ -73,11 +75,11 @@ class Watermeter:
                 ]
         
         if os.path.isfile(filepath):
-            print("... file already exist ...")
+            print("... file %s already exist ..." %namefilecsv )
             with open(namefilecsv, mode='a', encoding='utf-8', newline='' ) as f:
                 writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
                 writer.writerow({
-                   # 'data': data_hora,
+                    'data': self.__append_timestamp(),
                     'dia': dataset[0], 
                     'horas': dataset[1], 
                     'tamanho': dataset[2], 
@@ -93,7 +95,8 @@ class Watermeter:
                 writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
                 writer.writeheader()
                 writer.writerow({
-                   # 'data': data_hora,
+                    'data': self.__append_timestamp(),
+                    'dia': dataset[0], 
                     'dia': dataset[0],
                     'horas': dataset[1],
                     'tamanho': dataset[2],
@@ -104,10 +107,11 @@ class Watermeter:
 
         return filepath
 
-    
+    def __append_timestamp(self):
+        return datetime.now().strftime('%d/%m/%y %H:%M')
+
 
     def clean_data(self):
-        # data_hora = datetime.now().strftime('%d/%m/%y %H:%M')
 
         pass
 
