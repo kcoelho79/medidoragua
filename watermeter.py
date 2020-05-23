@@ -6,6 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import os, csv
 from datetime import datetime
+import pandas as pd
+
 
 
 
@@ -34,6 +36,7 @@ class Watermeter:
         print('... getting page from %s ...' %self.url)
         self.driver = webdriver.Chrome()
         self.driver.get(self.url)
+        print('... got page ...')
         print('... fechting data by Selenium ...')
         try:
             element = WebDriverWait(self.driver, 30).until(
@@ -46,12 +49,18 @@ class Watermeter:
                 self.dataset.append(i.text)
 
         except AssertionError as error:
-            print('!!! error ',error)
+            print('!!! error !!!',error)
 
         finally:
-            print("... printing data...", self.dataset)
-            print("... closed webdriver ...")
+            if bool(self.dataset):  #check se the dataset was created and not 
+                print("... fetched data ... ")
+            else: 
+                print("!!! erro dataset not created !!!")
+            print('... created dataset ...')
+            print("... printing dataset ...", self.dataset)
             self.driver.quit()
+            print("... closed webdriver ...")
+
             return self.dataset
 
         # return self.dataset -- see todo #4 
@@ -105,14 +114,20 @@ class Watermeter:
                     'distancia': dataset[5]
                 })
 
+            
         return filepath
 
     def __append_timestamp(self):
+        print('... appending timestamp ...')
         return datetime.now().strftime('%d/%m/%y %H:%M')
 
-
-    def clean_data(self):
-
-        pass
-
+    # clean dataset, delimited is used para demiliter the chah . or , from percentual  
+    def clean_dataset(self, csvfilepath , delimited = '.' ):
+        print('... cleanning dataframe ...')
+        print('... created dataframe from dataset ...')
+        dataframe = pd.read_csv(csvfilepath, index_col= False , parse_dates = ["data"])
+        dataframe['medicao'] = pd.to_numeric(dataframe['medicao'].str.split(delimited).str.get(0))
+        dataframe['horas'] = pd.to_datetime(dataframe['horas'], format='%H:%M').dt.time
+        print('... dataframe cleanned ... ')
+        return dataframe
 
