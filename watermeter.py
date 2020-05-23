@@ -4,12 +4,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+import os, csv
+
 
 class Watermeter:
     
     def __init__(self):
         self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
-        self.data_collected = []
+        self.dataset = []
 
         # Open HeadLess chromedriver
     def start_display(self):
@@ -39,23 +41,74 @@ class Watermeter:
             pageSource = self.driver.page_source
             bsobj = BeautifulSoup(pageSource, features="html.parser")
             for i in bsobj.find("div", {"class": "word-wrap"}, text="2019.0071").next_siblings:
-                self.data_collected.append(i.text)
+                self.dataset.append(i.text)
 
         except AssertionError as error:
             print('!!! error ',error)
 
         finally:
-            print("... printing data...", self.data_collected)
+            print("... printing data...", self.dataset)
             print("... closed webdriver ...")
             self.driver.quit()
+            return self.dataset
 
-        # return self.data_collected -- see todo #4 
+        # return self.dataset -- see todo #4 
 
-    def convert_tocsv(self):
-        print('... converting dict to csv ...')
-        pass
+    def dict_tocsv(self,dataset=dict ,namefilecsv= 'data.csv'): 
+        # if namefilecsv:
+        #     self.namefilecsv = namefilecsv
+
+        dirpath = os.path.abspath(os.path.dirname(__file__))
+        filepath = os.path.join(dirpath, namefilecsv)
+
+        print('... converting dict to csv %s...' %namefilecsv)
+        fieldnames =[   
+                'data',
+                'dia',
+                'horas',
+                'tamanho', 
+                'medicao', 
+                'tamanho_cx', 
+                'distancia'
+                ]
+        
+        if os.path.isfile(filepath):
+            print("... file already exist ...")
+            with open(namefilecsv, mode='a', encoding='utf-8', newline='' ) as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
+                writer.writerow({
+                   # 'data': data_hora,
+                    'dia': dataset[0], 
+                    'horas': dataset[1], 
+                    'tamanho': dataset[2], 
+                    'medicao': dataset[3], 
+                    'tamanho_cx': dataset[4], 
+                    'distancia': dataset[5]
+                    })
+
+        else:
+            print("... create file %s ..." %namefilecsv)
+            # create the file and write the header to first row 
+            with open(namefilecsv, mode='w', encoding='utf-8', newline='' ) as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
+                writer.writeheader()
+                writer.writerow({
+                   # 'data': data_hora,
+                    'dia': dataset[0],
+                    'horas': dataset[1],
+                    'tamanho': dataset[2],
+                    'medicao': dataset[3],
+                    'tamanho_cx': dataset[4],
+                    'distancia': dataset[5]
+                })
+
+        return filepath
+
+    
 
     def clean_data(self):
+        # data_hora = datetime.now().strftime('%d/%m/%y %H:%M')
+
         pass
 
 
