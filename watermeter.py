@@ -27,12 +27,32 @@ class Watermeter:
     def get_page(self,url=None):
         if url:
             self.url = url
+        print('... getting page from %s ...' %self.url)
+        self.driver = webdriver.Chrome()
+        self.driver.get(self.url)
+        print('... fechting data by Selenium ...')
+        try:
+            element = WebDriverWait(self.driver, 30).until(
+            #  Aguarda carregar a  tabela com todos os medidores
+            EC.presence_of_element_located((By.XPATH, '//*[@id="body"]/div/div/div[1]/div[2]/div/div[1]/div/div[1]/div/lego-report/lego-canvas-container/div/file-drop-zone/span/content-section/canvas-component[2]/div/div/div/div/div/lego-table/div/div[3]'))
+            )
+            pageSource = self.driver.page_source
+            bsobj = BeautifulSoup(pageSource, features="html.parser")
+            for i in bsobj.find("div", {"class": "word-wrap"}, text="2019.0071").next_siblings:
+                self.data_collected.append(i.text)
 
-        print('(1)... fetching data from %s ...' %self.url)
-        return self.url
+        except AssertionError as error:
+            print('!!! error ',error)
+
+        finally:
+            print("... printing data...", self.data_collected)
+            print("... closed webdriver ...")
+            self.driver.quit()
+
+        # return self.data_collected -- see todo #4 
 
     def convert_tocsv(self):
-        print('(1)... converting dict to csv ...')
+        print('... converting dict to csv ...')
         pass
 
     def clean_data(self):
