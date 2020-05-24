@@ -14,8 +14,9 @@ class Watermeter:
     
     def __init__(self):
         self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
-        self.dataset = []
+        self.dataset = []  # dataCollected
         self.filepath = ''
+        self.dataframe = ''
 
         # Open HeadLess chromedriver
     def start_display(self):
@@ -30,7 +31,7 @@ class Watermeter:
         print('... closed!...')
 
 
-    def get_page(self,url=None):
+    def get_page(self,url=None):  #fetchWaterLevel
         if url:
             self.url = url
         print('... getting page from %s ...' %self.url)
@@ -54,10 +55,11 @@ class Watermeter:
         finally:
             if bool(self.dataset):  #check se the dataset was created and not 
                 print("... fetched data ... ")
+                print('... created dataset ...')
+                print("... printing dataset ...", self.dataset)
             else: 
                 print("!!! erro dataset not created !!!")
-            print('... created dataset ...')
-            print("... printing dataset ...", self.dataset)
+            
             self.driver.quit()
             print("... closed webdriver ...")
 
@@ -65,71 +67,68 @@ class Watermeter:
 
         # return self.dataset -- see todo #4 
 
-    def dict_tocsv(self,dataset=dict ,namefilecsv= 'data.csv'): 
-        # if namefilecsv:
-        #     self.namefilecsv = namefilecsv
-
+    def manipular_dados(self, dataset = None  ,namefilecsv= 'data.csv'):
+        dataset = self.dataset
         dirpath = os.path.abspath(os.path.dirname(__file__))
         filepath = os.path.join(dirpath, namefilecsv)
-
-        print('... converting dict to %s...' %namefilecsv)
-        fieldnames =[   
-                'data',
-                'dia',
-                'horas',
-                'tamanho', 
-                'medicao', 
-                'tamanho_cx', 
-                'distancia'
-                ]
         
+
+class handle:
+    def __init__(self, dataset):  #dataset = data collected
+        print("... START HANDLE DATA ...")
+        self.dataset = dataset
+        self.dataframe = {
+            'data': datetime.now().strftime('%d/%m/%y %H:%M'),
+            'dia': dataset[0], 
+            'horas': dataset[1], 
+            'tamanho': dataset[2], 
+            'medicao': dataset[3], 
+            'tamanho_cx': dataset[4], 
+            'distancia': dataset[5]
+        }
+        # create list get all keys=(columns dataframe) from dataframe
+        self.fieldnames = [col for col in self.dataframe.keys()] 
+                    
+
+    def csv_file(self, filename):
+        print("... Generate CSV Dataframe ...")
+        dirpath = os.path.abspath(os.path.dirname(__file__))
+        filepath = os.path.join(dirpath, filename)
+
         if os.path.isfile(filepath):
-            print("... file %s already exist ..." %namefilecsv )
-            with open(namefilecsv, mode='a', encoding='utf-8', newline='' ) as f:
-                writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
-                writer.writerow({
-                    'data': self.__append_timestamp(),
-                    'dia': dataset[0], 
-                    'horas': dataset[1], 
-                    'tamanho': dataset[2], 
-                    'medicao': dataset[3], 
-                    'tamanho_cx': dataset[4], 
-                    'distancia': dataset[5]
-                    })
-
+            print("... file < %s > already exist ..." %filename)
+            self.__open_file(filename)
         else:
-            print("... create file %s ..." %namefilecsv)
-            # create the file and write the header to first row 
-            with open(namefilecsv, mode='w', encoding='utf-8', newline='' ) as f:
-                writer = csv.DictWriter(f, fieldnames=fieldnames, dialect='excel')
-                writer.writeheader()
-                writer.writerow({
-                    'data': self.__append_timestamp(),
-                    'dia': dataset[0], 
-                    'dia': dataset[0],
-                    'horas': dataset[1],
-                    'tamanho': dataset[2],
-                    'medicao': dataset[3],
-                    'tamanho_cx': dataset[4],
-                    'distancia': dataset[5]
-                })
+            self.__create_file(filename)
 
-        self.filepath = filepath     
-        return filepath
+        self.filename = filename 
+        return filename
 
-    def __append_timestamp(self):
-        print('... appending timestamp ...')
-        return datetime.now().strftime('%d/%m/%y %H:%M')
+    def __open_file(self, filename):
+        print("... opening file < %s > " %filename)  
+        with open(filename, mode='a', encoding='utf-8', newline='' ) as f:
+            writer = csv.DictWriter(f, fieldnames=self.fieldnames, dialect='excel')
+            writer.writerow(self.dataframe)
 
-    # clean dataset, delimited is used para demiliter the chah . or , from percentual  
-    def clean_dataset(self, csvfilepath , delimited = '.', day=1 ):
-        print('... cleanning dataset ...')
-        print('... created dataframe from dataset ...')
-        dataframe = pd.read_csv(csvfilepath, index_col= False , parse_dates = ["data"])
-        dataframe['medicao'] = pd.to_numeric(dataframe['medicao'].str.split(delimited).str.get(0))
-        dataframe['horas'] = pd.to_datetime(dataframe['horas'], format='%H:%M').dt.time
-        print('... selected period dataframe...')
-        dateperiod = pd.datetime.now() - timedelta(days=day)
-        df2 = dataframe[dataframe['data'] > dateperiod]
-        print('... dataframe cleanned ... ')
-        return df2
+    def __create_file(self, filename):
+        print("... creating file < %s > " %filename)  
+        with open(filename, mode='w', encoding='utf-8', newline='' ) as f:
+            writer = csv.DictWriter(f, fieldnames=self.fieldnames, dialect='excel')
+            writer.writeheader()
+            writer.writerow(self.dataframe)
+     
+
+    # # clean dataset, delimited is used para demiliter the char . or , from percentual  
+    # def clean_dataset(self, csvfilepath=None , delimited = '.', day=1 ):
+    #     csvfilepath = self.filepath
+    #     print('... cleanning dataset ...')
+    #     print('... created dataframe from dataset ...')
+    #     dataframe = pd.read_csv(csvfilepath, index_col= False , parse_dates = ["data"])
+    #     dataframe['medicao'] = pd.to_numeric(dataframe['medicao'].str.split(delimited).str.get(0))
+    #     dataframe['horas'] = pd.to_datetime(dataframe['horas'], format='%H:%M').dt.time
+    #     print('... selected period dataframe...')
+    #     dateperiod = pd.datetime.now() - timedelta(days=day)
+    #     df2 = dataframe[dataframe['data'] > dateperiod]
+    #     print('... dataframe cleanned ... ')
+    #     self.dataframe = df2
+    #     return df2

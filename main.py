@@ -38,14 +38,24 @@ class water meter
 '''
 
 from watermeter import Watermeter
+from watermeter import handle
+
+
 
 my_url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
 
-wt = Watermeter()
-wt.start_display()
-dic = wt.get_page()
-csv = wt.dict_tocsv(dic)
-df = wt.clean_dataset(csv,'.',day=3)
-wt.close_display()
+# wt = Watermeter()
+# wt.start_display()
+# dados = wt.get_page()
+
+dados = ['24', '12:59', 'P', '99.0%', '1.0', '22.0']
+
+arquivo = handle(dados)
+arquivo.csv_file('novo.csv')
+print(arquivo.filename)
+
+# wt.dict_tocsv()
+# wt.clean_dataset(day=1)
+# wt.close_display()
 
 
