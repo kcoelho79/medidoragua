@@ -44,15 +44,18 @@ from watermeter import handle
 
 my_url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
 
-# wt = Watermeter()
-# wt.start_display()
-# dados = wt.get_page()
+wt = Watermeter()
+wt.start_display()
+dados = wt.get_page()
 
-dados = ['24', '12:59', 'P', '99.0%', '1.0', '22.0']
+# dados = ['24', '12:59', 'P', '99.0%', '1.0', '22.0']
 
 arquivo = handle(dados)
-arquivo.csv_file('novo.csv')
-print(arquivo.filename)
+arquivo.csv_file('kleber.csv')
+arquivo.clean()
+arquivo.period(day=1)
+print(arquivo.dataframe)
+
 
 # wt.dict_tocsv()
 # wt.clean_dataset(day=1)
