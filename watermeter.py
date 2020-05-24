@@ -5,9 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import os, csv
-from datetime import datetime
+from datetime import datetime, timedelta
 import pandas as pd
-
 
 
 
@@ -16,6 +15,7 @@ class Watermeter:
     def __init__(self):
         self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
         self.dataset = []
+        self.filepath = ''
 
         # Open HeadLess chromedriver
     def start_display(self):
@@ -114,7 +114,7 @@ class Watermeter:
                     'distancia': dataset[5]
                 })
 
-            
+        self.filepath = filepath     
         return filepath
 
     def __append_timestamp(self):
@@ -122,12 +122,14 @@ class Watermeter:
         return datetime.now().strftime('%d/%m/%y %H:%M')
 
     # clean dataset, delimited is used para demiliter the chah . or , from percentual  
-    def clean_dataset(self, csvfilepath , delimited = '.' ):
-        print('... cleanning dataframe ...')
+    def clean_dataset(self, csvfilepath , delimited = '.', day=1 ):
+        print('... cleanning dataset ...')
         print('... created dataframe from dataset ...')
         dataframe = pd.read_csv(csvfilepath, index_col= False , parse_dates = ["data"])
         dataframe['medicao'] = pd.to_numeric(dataframe['medicao'].str.split(delimited).str.get(0))
         dataframe['horas'] = pd.to_datetime(dataframe['horas'], format='%H:%M').dt.time
+        print('... selected period dataframe...')
+        dateperiod = pd.datetime.now() - timedelta(days=day)
+        df2 = dataframe[dataframe['data'] > dateperiod]
         print('... dataframe cleanned ... ')
-        return dataframe
-
+        return df2

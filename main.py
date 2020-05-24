@@ -5,17 +5,17 @@
 class water meter
     url = url to webcrawler
 
-    fetch_data()
-    convert_csv()
-    clean_data()
-    append_timestamp()
-    select_period(hours)
+    get_page() - ok
+    dict_csv() - ok
+    clean_data() - ok 
+    append_timestamp() - ok
+    select_period(hours) - ok   
     create_graph
     render_graph
     publish_graph
     
 
-   (1) fetch data
+   (1) get page
   webcrawler
    url => fetch water  level <== dict
 
@@ -42,4 +42,10 @@ from watermeter import Watermeter
 my_url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
 
 wt = Watermeter()
-wt.fetch_data()
+wt.start_display()
+dic = wt.get_page()
+csv = wt.dict_tocsv(dic)
+df = wt.clean_dataset(csv,'.',day=3)
+wt.close_display()
+
+
