@@ -3,30 +3,7 @@
 ''''
 
 class water meter
-    url = url to webcrawler
-
-    get_page() - ok
-    dict_csv() - ok
-    clean_data() - ok 
-    append_timestamp() - ok
-    select_period(hours) - ok   
-    create_graph
-    render_graph
-    publish_graph
     
-
-   (1) get page
-  webcrawler
-   url => fetch water  level <== dict
-
-   (2) prepar to data
-  parse
-
-    dict => convert CSV 
-         => sanitizacao 
-         => clean up 
-         => append timestamp
-                             <== csv 
 
    (3) plot graph
 
@@ -39,26 +16,42 @@ class water meter
 
 from watermeter import Watermeter
 from watermeter import handle
+from flask import Flask, render_template
 
-
+app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 my_url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
 
-wt = Watermeter()
-wt.start_display()
-dados = wt.get_page()
 
-# dados = ['24', '12:59', 'P', '99.0%', '1.0', '22.0']
+medidor = Watermeter()
+medidor.start_display()
+data = medidor.get_page()
+#data = ['25', '22:50', 'P', '100.0%', '1.0', '21.0']
+medidor.sanitize_data(data)
 
-arquivo = handle(dados)
-arquivo.csv_file('kleber.csv')
-arquivo.clean()
-arquivo.period(day=1)
-print(arquivo.dataframe)
+@app.route('/')
+def index():
+
+    wt = Watermeter()
+    wt.start_display()
+    dados = wt.get_page()
+    arquivo = handle(dados)
+    arquivo.csv_file()
+    arquivo.clean()
+    arquivo.period(day=1)
+    arquivo.create_graph()
+    wt.close_display()
+
+    return ("<h1> /plot para visualizar grafico </h1>") 
+
+@app.route('/plot')
+def plot():
+    return render_template('plot.html') 
 
 
-# wt.dict_tocsv()
-# wt.clean_dataset(day=1)
-# wt.close_display()
+
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0')
 
 

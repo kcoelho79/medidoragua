@@ -5,10 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import os, csv
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import pandas as pd
-
-
+import plotly.express as px
 
 class Watermeter:
     
@@ -65,14 +64,31 @@ class Watermeter:
 
             return self.dataColected
 
+    def sanitize_data(self, dataColected ,delimited='.'):
+        print('... combine field date + field hour ...')
+        hr = datetime.strptime(dataColected[1], '%H:%M')
+        dt = datetime(datetime.now().year,datetime.now().month, int(dataColected[0]))
+        Combine_HourData = datetime(dt.year, dt.month, dt.day, hr.hour, hr.minute)
+        dataColected[0]= Combine_HourData
+        print("... formatting % ...")
+        dataColected[3] = dataColected[3].split(delimited)[0]
+        print('... data sanitized ...')
+        self.dataSanitized = dataColected
+        return dataColected
+    
+    def save_data(self):
+        pass
 
-class handle:
+    def save_graph(self):
+        pass
+
+class handle: #Datahandler
     def __init__(self, dataColected):  #dataColected = data collected
         print("... START HANDLE DATA ...")
         self.dataCollected = dataColected
         self.dataStructure = {
-            'data': datetime.now().strftime('%d/%m/%y %H:%M'),
-            'dia': dataColected[0], 
+            'timestamp': datetime.now().strftime('%d/%m/%y %H:%M'),
+            'data': dataColected[0], 
             'horas': dataColected[1], 
             'tamanho': dataColected[2], 
             'medicao': dataColected[3], 
@@ -83,7 +99,7 @@ class handle:
         self.fieldnames = [col for col in self.dataStructure.keys()] 
         self.dataframe = ''
                     
-    # CSV 
+    # CSV or transform
     def csv_file(self, filename='data.csv'):
         print("... Generate CSV Dataframe ...")
         dirpath = os.path.abspath(os.path.dirname(__file__))
@@ -111,19 +127,15 @@ class handle:
             writer = csv.DictWriter(f, fieldnames=self.fieldnames, dialect='excel')
             writer.writeheader()
             writer.writerow(self.dataStructure)
-     
-    # Clean up  Data
-
-    def clean(self, delimited = '.'):
-        # arg delimited is used para demiliter the char . or , from field percentual  
-        print('... cleaning string 99.0% to 99 ... ')
-        self.dataframe['medicao'] = pd.to_numeric(self.dataframe['medicao'].str.split(delimited).str.get(0))
-        print('... formatting field hours to Brazilian format HH:MM ...')
-        self.dataframe['horas'] = pd.to_datetime(self.dataframe['horas'], format='%H:%M').dt.time
-        print('... dataframe cleaned ...')
-
+    
     def period(self, day=1):
         dateperiod = pd.datetime.now() - timedelta(days=day)
         print('... period selected  from %s - %s...' %(dateperiod ,pd.datetime.now()))
         self.dataframe = self.dataframe[self.dataframe['data'] > dateperiod]
         print('... period data selected ... ')
+    
+    def create_graph(self): 
+        fig = px.bar(self.dataframe, x="horas", y="medicao")
+        fig.write_html("templates/plot.html")
+        
+
