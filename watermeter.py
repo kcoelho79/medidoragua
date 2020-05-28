@@ -7,15 +7,17 @@ from bs4 import BeautifulSoup
 import os, csv
 from datetime import datetime, timedelta, date
 import pandas as pd
-import plotly.express as px
+from flask import Flask, render_template
+import matplotlib.pyplot as plt
+import io
+import base64
 
 class Watermeter:
     
     def __init__(self):
         self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
         self.dataColected = []  # dataCollected
-        self.filepath = ''
-        self.dataframe = ''
+        self.dataSanitised = ''
 
         # Open HeadLess chromedriver
     def start_display(self):
@@ -70,38 +72,31 @@ class Watermeter:
         dt = datetime(datetime.now().year,datetime.now().month, int(dataColected[0]))
         Combine_HourData = datetime(dt.year, dt.month, dt.day, hr.hour, hr.minute)
         dataColected[0]= Combine_HourData
+        print('>>> %s <<<' %(dataColected))
         print("... formatting % ...")
         dataColected[3] = dataColected[3].split(delimited)[0]
         print('... data sanitized ...')
-        self.dataSanitized = dataColected
-        return dataColected
+        print('>>> %s <<<' %(dataColected))
+        self.dataSanitised = dataColected
     
-    def save_data(self):
-        pass
+    def save_data(self, dataSanitised= None, filename='data.csv'):
+        if bool(dataSanitised):
+            self.dataSanitised = dataSanitised
 
-    def save_graph(self):
-        pass
-
-class handle: #Datahandler
-    def __init__(self, dataColected):  #dataColected = data collected
-        print("... START HANDLE DATA ...")
-        self.dataCollected = dataColected
+        print("... START SAVE FILE ...")
         self.dataStructure = {
             'timestamp': datetime.now().strftime('%d/%m/%y %H:%M'),
-            'data': dataColected[0], 
-            'horas': dataColected[1], 
-            'tamanho': dataColected[2], 
-            'medicao': dataColected[3], 
-            'tamanho_cx': dataColected[4], 
-            'distancia': dataColected[5]
+            'data': self.dataSanitised[0], 
+            'horas': self.dataSanitised[1], 
+            'tamanho': self.dataSanitised[2], 
+            'medicao': self.dataSanitised[3], 
+            'tamanho_cx': self.dataSanitised[4], 
+            'distancia': self.dataSanitised[5]
         }
         # create list get all keys=(columns dataStructure) from dataStructure
         self.fieldnames = [col for col in self.dataStructure.keys()] 
-        self.dataframe = ''
-                    
-    # CSV or transform
-    def csv_file(self, filename='data.csv'):
-        print("... Generate CSV Dataframe ...")
+        self.fileCSV = ''
+
         dirpath = os.path.abspath(os.path.dirname(__file__))
         filepath = os.path.join(dirpath, filename)
 
@@ -111,9 +106,10 @@ class handle: #Datahandler
         else:
             self.__create_file(filename)
 
-        self.dataframe = pd.read_csv(filename, index_col= False , parse_dates = ["data"])
+        #transform data Sanitized to FileCSV
+        self.fileCSV = pd.read_csv(filename, index_col= False , parse_dates = ["data"])
 
-        return self.dataframe
+        return self.fileCSV
 
     def __open_file(self, filename):
         print("... opening file < %s > " %filename)  
@@ -127,6 +123,23 @@ class handle: #Datahandler
             writer = csv.DictWriter(f, fieldnames=self.fieldnames, dialect='excel')
             writer.writeheader()
             writer.writerow(self.dataStructure)
+
+    def save_graph(self, filename, day=1):
+        
+        df = pd.read_csv(filename, index_col=0 )
+
+        dateperiod = pd.datetime.now() - timedelta(days=day)
+        df[df['data'] > dateperiod]
+
+        ax = df['medicao'].plot.area()
+
+
+        img = io.BytesIO()
+        ax.figure.savefig(img, format='png')   
+        img.seek(0)
+        plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+        return plot_url
+
     
     def period(self, day=1):
         dateperiod = pd.datetime.now() - timedelta(days=day)
@@ -134,8 +147,6 @@ class handle: #Datahandler
         self.dataframe = self.dataframe[self.dataframe['data'] > dateperiod]
         print('... period data selected ... ')
     
-    def create_graph(self): 
-        fig = px.bar(self.dataframe, x="horas", y="medicao")
-        fig.write_html("templates/plot.html")
-        
+    def create_graph(self):
+        pass
 
