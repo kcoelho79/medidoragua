@@ -15,10 +15,10 @@ import base64
 
 class Watermeter:
     
-    def __init__(self):
+    def __init__(self, box):
         self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
         self.dataColected = []  # dataCollected
-        self.dataSanitised = ''
+        self.box = box
         self.delimited = ''
 
         # Open HeadLess chromedriver
@@ -37,6 +37,7 @@ class Watermeter:
     def get_page(self,url=None):  #fetchWaterLevel
         if not url:
             self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
+        print('... getting WaterBOX %s ...' %self.box)
         print('... getting page from %s ...' %self.url)
         self.driver = webdriver.Chrome()
         self.driver.get(self.url)
@@ -48,11 +49,12 @@ class Watermeter:
             )
             pageSource = self.driver.page_source
             bsobj = BeautifulSoup(pageSource, features="html.parser")
-            for i in bsobj.find("div", {"class": "word-wrap"}, text="2019.0071").next_siblings:
+            for i in bsobj.find("div", {"class": "word-wrap"}, text=self.box).next_siblings:
                 self.dataColected.append(i.text)
 
         except AssertionError as error:
             print('!!! error !!!',error)
+            self.driver.quit()
 
         finally:
             if bool(self.dataColected):  #check se the dataColected was created and not 
@@ -94,6 +96,7 @@ class Watermeter:
         else:
             self.__create_file(filename)
 
+        print('... data saved CSV file...')
         #transform data Sanitized to FileCSV
         self.fileCSV = pd.read_csv(filename, index_col= False , parse_dates = ["data"])
 
@@ -126,40 +129,20 @@ class Watermeter:
             writer.writeheader()
             writer.writerow(self.dataStructure)
 
-    def save_graph(self, filename, day=10):
+    def save_graph(self, filename):
         
-        #df = pd.read_csv(filename, parse_dates = ["data"] )
+        print("... plotting graph ...")
         df = pd.read_csv(filename, usecols=['horas','medicao'])
-
-        #dateperiod = pd.datetime.now() - timedelta(days=day)
-        #df[df['data'] >  dateperiod]
-
-        print(df['horas'])
-        print(df.dtypes)
-
-
-        # df.set_index('horas',inplace=True)
-
-
-        #fig, ax = plt.subplots(figsize=(15,7))
-        df.plot(x='horas',y='medicao', grid=True)
-        # formatar label x para visualizar hora em hora 
-        #ax.xaxis.set_major_locator(mdates.HourLocator(byhour=range(1), interval=1))
-       # ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+        if len(df) > 25: 
+            df[-24:].plot(x='horas',y='medicao', grid=True) # get last 24 measure
+        else:
+            df.plot(x='horas',y='medicao', grid=True)
         img = io.BytesIO()
-       # ax.figure.savefig(img, format='png')   
         plt.savefig(img, format='png')
         img.seek(0)
         plot_url = base64.b64encode(img.getvalue()).decode('utf8')
         return plot_url
 
     
-    # def period(self, day=1):
-    #     # dateperiod = pd.datetime.now() - timedelta(days=day)
-    #     # print('... period selected  from %s - %s...' %(dateperiod ,pd.datetime.now()))
-    #     # self.dataframe = self.dataframe[self.dataframe['data'] > dateperiod]
-    #     # print('... period data selected ... ')
-    
-    def create_graph(self):
-        pass
+   
 
