@@ -5,10 +5,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import os, csv
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, time
 import pandas as pd
 from flask import Flask, render_template
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import io
 import base64
 
@@ -18,6 +19,7 @@ class Watermeter:
         self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
         self.dataColected = []  # dataCollected
         self.dataSanitised = ''
+        self.delimited = ''
 
         # Open HeadLess chromedriver
     def start_display(self):
@@ -33,13 +35,12 @@ class Watermeter:
 
 
     def get_page(self,url=None):  #fetchWaterLevel
-        if url:
-            self.url = url
+        if not url:
+            self.url = 'https://datastudio.google.com/reporting/188wX_8wKVwiG8VBhAGheljpcqU18Dov1/page/bCkF'
         print('... getting page from %s ...' %self.url)
         self.driver = webdriver.Chrome()
         self.driver.get(self.url)
         print('... got page ...')
-        print('... fechting data by Selenium ...')
         try:
             element = WebDriverWait(self.driver, 30).until(
             #  Aguarda carregar a  tabela com todos os medidores
@@ -66,35 +67,22 @@ class Watermeter:
 
             return self.dataColected
 
-    def sanitize_data(self, dataColected ,delimited='.'):
-        print('... combine field date + field hour ...')
-        hr = datetime.strptime(dataColected[1], '%H:%M')
-        dt = datetime(datetime.now().year,datetime.now().month, int(dataColected[0]))
-        Combine_HourData = datetime(dt.year, dt.month, dt.day, hr.hour, hr.minute)
-        dataColected[0]= Combine_HourData
-        print('>>> %s <<<' %(dataColected))
-        print("... formatting % ...")
-        dataColected[3] = dataColected[3].split(delimited)[0]
-        print('... data sanitized ...')
-        print('>>> %s <<<' %(dataColected))
-        self.dataSanitised = dataColected
-    
-    def save_data(self, dataSanitised= None, filename='data.csv'):
-        if bool(dataSanitised):
-            self.dataSanitised = dataSanitised
-
+  
+    def save_data(self, filename ):
+       
         print("... START SAVE FILE ...")
         self.dataStructure = {
             'timestamp': datetime.now().strftime('%d/%m/%y %H:%M'),
-            'data': self.dataSanitised[0], 
-            'horas': self.dataSanitised[1], 
-            'tamanho': self.dataSanitised[2], 
-            'medicao': self.dataSanitised[3], 
-            'tamanho_cx': self.dataSanitised[4], 
-            'distancia': self.dataSanitised[5]
+            'data': self.__format_date(self.dataColected[0]),
+            'horas': self.__format_hour(self.dataColected[1]), 
+            'tamanho': self.dataColected[2], 
+            'medicao': self.__format_percentual(self.dataColected[3]), 
+            'tamanho_cx': self.dataColected[4], 
+            'distancia': self.dataColected[5]
         }
-        # create list get all keys=(columns dataStructure) from dataStructure
+        # create filedname list get all keys=(columns) from dataStructure
         self.fieldnames = [col for col in self.dataStructure.keys()] 
+        print(">>> Field %s " %(self.fieldnames))
         self.fileCSV = ''
 
         dirpath = os.path.abspath(os.path.dirname(__file__))
@@ -109,7 +97,21 @@ class Watermeter:
         #transform data Sanitized to FileCSV
         self.fileCSV = pd.read_csv(filename, index_col= False , parse_dates = ["data"])
 
+
         return self.fileCSV
+
+    def __format_date(self, d):
+        return date.today().replace(day=int(d)).strftime('%d/%m')
+
+    def  __format_hour(self, t):
+        h , m =  t.split(':')
+        return time(hour=int(h),minute=int(m)).strftime('%H:%M')
+
+    def __format_percentual(self, v, delimited='.'):
+        if bool(self.delimited):
+            delimited = self.delimited
+        return int(v.split(delimited)[0])
+
 
     def __open_file(self, filename):
         print("... opening file < %s > " %filename)  
@@ -124,28 +126,39 @@ class Watermeter:
             writer.writeheader()
             writer.writerow(self.dataStructure)
 
-    def save_graph(self, filename, day=1):
+    def save_graph(self, filename, day=10):
         
-        df = pd.read_csv(filename, index_col=0 )
+        #df = pd.read_csv(filename, parse_dates = ["data"] )
+        df = pd.read_csv(filename, usecols=['horas','medicao'])
 
-        dateperiod = pd.datetime.now() - timedelta(days=day)
-        df[df['data'] > dateperiod]
+        #dateperiod = pd.datetime.now() - timedelta(days=day)
+        #df[df['data'] >  dateperiod]
 
-        ax = df['medicao'].plot.area()
+        print(df['horas'])
+        print(df.dtypes)
 
 
+        # df.set_index('horas',inplace=True)
+
+
+        #fig, ax = plt.subplots(figsize=(15,7))
+        df.plot(x='horas',y='medicao', grid=True)
+        # formatar label x para visualizar hora em hora 
+        #ax.xaxis.set_major_locator(mdates.HourLocator(byhour=range(1), interval=1))
+       # ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
         img = io.BytesIO()
-        ax.figure.savefig(img, format='png')   
+       # ax.figure.savefig(img, format='png')   
+        plt.savefig(img, format='png')
         img.seek(0)
         plot_url = base64.b64encode(img.getvalue()).decode('utf8')
         return plot_url
 
     
-    def period(self, day=1):
-        dateperiod = pd.datetime.now() - timedelta(days=day)
-        print('... period selected  from %s - %s...' %(dateperiod ,pd.datetime.now()))
-        self.dataframe = self.dataframe[self.dataframe['data'] > dateperiod]
-        print('... period data selected ... ')
+    # def period(self, day=1):
+    #     # dateperiod = pd.datetime.now() - timedelta(days=day)
+    #     # print('... period selected  from %s - %s...' %(dateperiod ,pd.datetime.now()))
+    #     # self.dataframe = self.dataframe[self.dataframe['data'] > dateperiod]
+    #     # print('... period data selected ... ')
     
     def create_graph(self):
         pass
