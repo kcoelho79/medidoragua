@@ -12,6 +12,10 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import io
 import base64
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import sendemail
+
 
 class Watermeter:
     
@@ -113,7 +117,12 @@ class Watermeter:
     def __format_percentual(self, v, delimited='.'):
         if bool(self.delimited):
             delimited = self.delimited
-        return int(v.split(delimited)[0])
+        level = int(v.split(delimited)[0]) 
+        print("... checking water level ...")
+        if level < 170:
+            print ("... SEND ALERT LOW WATER LEVEL ... ")
+            sendemail.send_message(level)
+        return level
 
 
     def __open_file(self, filename):
@@ -142,7 +151,6 @@ class Watermeter:
         img.seek(0)
         plot_url = base64.b64encode(img.getvalue()).decode('utf8')
         return plot_url
-
     
    
 
